@@ -1,4 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1747853737
+::res://::1747858348
 hi.txt::TextFile::-1::1747853318::0::1::::<><>::
-icon.svg::CompressedTexture2D::2293927868030402250::1747853555::1747853558::1::::<><>::
+icon.svg::CompressedTexture2D::4542057147773241043::1747853555::1747858344::1::::<><>::
+main.tscn::PackedScene::7805289446989258663::1747857469::0::1::::<><>::res://player.gd<>uid://7xgwlkoe4gy1::::res://icon.svg
+player.gd::GDScript::-1::1747857456::0::1::::<>CharacterBody2D<>::
