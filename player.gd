@@ -19,3 +19,4 @@ func _process(delta: float) -> void:
 		velocity = velocity.normalized() * speed
 	
 	position += velocity * delta
+	print("HELLO")
