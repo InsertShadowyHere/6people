@@ -1,30 +1,87 @@
-[gd_scene load_steps=4 format=3 uid="uid://djg68hhehm4it"]
+[gd_scene load_steps=7 format=3 uid="uid://djg68hhehm4it"]
 
 [ext_resource type="Script" uid="uid://e4k5k8lly22b" path="res://player.gd" id="1_s8ss1"]
 [ext_resource type="Texture2D" uid="uid://b5yhaumtsj2t0" path="res://icon.svg" id="2_o31we"]
 [ext_resource type="Texture2D" uid="uid://rvm2buhtx0ax" path="res://New Piskel(3).png" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://djeody2vbwnun" path="res://test_npc.png" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://bg33gxqxq2d7m" path="res://test.gd" id="5_lquwl"]
 
-[node name="Scene" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(653, 691)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Game" type="Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Map" type="Sprite2D" parent="World"]
+position = Vector2(1879, -714)
+scale = Vector2(9.44445, 9.44444)
+texture = ExtResource("3_h2yge")
+
+[node name="Player" type="CharacterBody2D" parent="World"]
 top_level = true
-position = Vector2(984, 596)
+position = Vector2(2505, -750)
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_s8ss1")
 metadata/_edit_group_ = true
 
-[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+[node name="PlayerSprite" type="Sprite2D" parent="World/Player"]
 texture = ExtResource("2_o31we")
 
-[node name="PlayerHitbox" type="CollisionPolygon2D" parent="Player"]
+[node name="PlayerHitbox" type="CollisionPolygon2D" parent="World/Player"]
 polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
 
-[node name="PlayerCam" type="Camera2D" parent="Player"]
+[node name="PlayerCam" type="Camera2D" parent="World/Player"]
 
-[node name="World" type="Node2D" parent="."]
-position = Vector2(1008, 567)
+[node name="NPCs" type="Node2D" parent="World"]
+metadata/_edit_lock_ = true
+
+[node name="test_npc" type="Area2D" parent="World/NPCs"]
+position = Vector2(1419, -697)
+scale = Vector2(0.6, 0.6)
 metadata/_edit_group_ = true
 
-[node name="Background" type="Sprite2D" parent="World"]
-scale = Vector2(7, 7)
-texture = ExtResource("3_h2yge")
+[node name="NPCSprite" type="Sprite2D" parent="World/NPCs/test_npc"]
+texture = ExtResource("5_7mycd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/NPCs/test_npc"]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Popups" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DialoguePopups" type="Control" parent="HUD/Popups"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Test" type="ColorRect" parent="HUD/Popups/DialoguePopups"]
+layout_mode = 1
+offset_left = 373.0
+offset_top = 201.0
+offset_right = 1970.0
+offset_bottom = 667.0
+color = Color(0.415626, 0.243171, 0.266277, 1)
+script = ExtResource("5_lquwl")
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Popups/DialoguePopups/Test"]
+layout_mode = 0
+offset_right = 1602.0
+offset_bottom = 440.0
+tooltip_text = "oiojoiojio"
+theme_override_font_sizes/normal_font_size = 50
+text = "this is some test dialogue!"
+
+[connection signal="body_entered" from="World/NPCs/test_npc" to="HUD/Popups/DialoguePopups/Test" method="_on_test_npc_body_entered"]
+[connection signal="body_exited" from="World/NPCs/test_npc" to="HUD/Popups/DialoguePopups/Test" method="_on_test_npc_body_exited"]

@@ -1,6 +1,13 @@
+RichTextLabel
+ColorRect
+Control
+CanvasLayer
+Panel
+Node2D
+CollisionShape2D
+Area2D
+Sprite2D
+AnimatableBody2D
 TileMapLayer
 Camera2D
-Node2D
-Sprite2D
 CharacterBody2D
-CollisionShape2D
