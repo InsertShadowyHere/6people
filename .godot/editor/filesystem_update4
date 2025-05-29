@@ -26,3 +26,4 @@ res://base-objs/hud.tscn
 res://base-objs/container.tscn
 res://base-objs/container.gd
 res://base-objs/player.tscn
+res://levels/level2.tscn

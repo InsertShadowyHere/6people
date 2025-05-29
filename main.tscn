@@ -7,9 +7,25 @@
 [sub_resource type="GDScript" id="GDScript_h2yge"]
 script/source = "extends Node
 
+signal switched
 
 func _ready():
-	print_tree_pretty()
+	var player = get_node(\"/root/Game/Player\")
+	player.connect(\"switch\", _switch_scenes)
+
+func _switch_scenes(path):
+	var current_level = get_node(\"Level\")
+	if current_level:
+		current_level.queue_free()
+	await get_tree().create_timer(0.01).timeout
+
+	# Load and add the new Level node
+	var new_level_scene = load(path)
+	var new_level_instance = new_level_scene.instantiate()
+	add_child(new_level_instance)
+	new_level_instance.name = \"Level\"  # Ensure the new node is named \"Level\"
+	print(\"Switched to new level:\", path)
+	emit_signal(\"switched\")
 "
 
 [node name="Game" type="Node2D"]
@@ -18,11 +34,11 @@ script = SubResource("GDScript_h2yge")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("3_lquwl")]
-position = Vector2(-4585, -2618)
 
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
+offset = Vector2(10000, 0)
+transform = Transform2D(1, 0, 0, 1, 10000, 0)
 
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Level" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(-4432, -2852)

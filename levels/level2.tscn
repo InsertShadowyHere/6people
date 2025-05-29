@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://da5hvplo6onn1"]
+
+[ext_resource type="PackedScene" uid="uid://h0ogq786x4gd" path="res://base-objs/level.tscn" id="1_al1xy"]
+[ext_resource type="Texture2D" uid="uid://dvarrh872w54o" path="res://assets/New Piskel(2).png" id="2_trnjk"]
+
+[node name="Level" instance=ExtResource("1_al1xy")]
+
+[node name="Map" parent="." index="0"]
+scale = Vector2(20, 20)
+texture = ExtResource("2_trnjk")
+
+[node name="StartLoc" parent="." index="1"]
+position = Vector2(3897, -810)
