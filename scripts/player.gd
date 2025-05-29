@@ -1,31 +1,40 @@
 extends CharacterBody2D
 
-@export var speed = 500
+@export var speed = 2000
 var bg_node
+var bg_pos
 var bg_size
+var sprite
 
 var pos
 
-var edge_buffer = 30
+var edge_buffer
 var left_edge
 var right_edge
 var top_edge
 var bottom_edge
+var camera
 
 const zero_vector = Vector2(0, 0)
 
 func _ready() -> void:
-	var camera = $PlayerCam
-	bg_node = get_parent().get_node("Map")
+	sprite = $Sprite.texture
+	edge_buffer = max(sprite.get_width(), sprite.get_height())/2
+	camera = $Camera
+	bg_node = get_parent().get_node("Level")
+	bg_pos = bg_node.position
+	bg_node = bg_node.get_node("Map")
 	bg_size = Vector2(bg_node.texture.get_width(), bg_node.texture.get_height()) * bg_node.scale
-	camera.limit_left = bg_node.position[0]-bg_size[0]/2
-	camera.limit_right = bg_node.position[0]+bg_size[0]/2
-	camera.limit_top = bg_node.position[1]-bg_size[1]/2
-	camera.limit_bottom = bg_node.position[1]+bg_size[1]/2
-	left_edge = bg_node.position[0]-bg_size[0]/2
-	right_edge = bg_node.position[0]+bg_size[0]/2
-	top_edge = bg_node.position[1]-bg_size[1]/2
-	bottom_edge = bg_node.position[1]+bg_size[1]/2
+	camera.limit_left = bg_pos[0]-bg_size[0]/2
+	camera.limit_right = bg_pos[0]+bg_size[0]/2
+	camera.limit_top = bg_pos[1]-bg_size[1]/2
+	camera.limit_bottom = bg_pos[1]+bg_size[1]/2
+	left_edge = bg_pos[0]-bg_size[0]/2
+	right_edge = bg_pos[0]+bg_size[0]/2
+	top_edge = bg_pos[1]-bg_size[1]/2
+	bottom_edge = bg_pos[1]+bg_size[1]/2
+	
+	position = bg_node.get_parent().get_node("StartLoc").position + bg_node.get_parent().position
 	
 	
 func _process(delta: float) -> void:
@@ -38,6 +47,11 @@ func _process(delta: float) -> void:
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	
+	if Input.is_action_just_pressed("action_1"):
+		scale *= 1.25
+	if Input.is_action_just_pressed("action_2"):
+		scale *= 0.8
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

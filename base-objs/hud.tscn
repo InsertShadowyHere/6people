@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://chl2fihjpe0vu"]
+
+[ext_resource type="Script" uid="uid://bg33gxqxq2d7m" path="res://scripts/test.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://dvarrh872w54o" path="res://assets/New Piskel(2).png" id="2_8sq4i"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Popups" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="DialoguePopups" type="Control" parent="Popups"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Test" type="ColorRect" parent="Popups/DialoguePopups"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -798.5
+offset_right = 798.5
+offset_bottom = 466.0
+grow_horizontal = 2
+color = Color(0.415626, 0.243171, 0.266277, 1)
+script = ExtResource("1_64ctp")
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Popups/DialoguePopups/Test"]
+layout_mode = 0
+offset_right = 1602.0
+offset_bottom = 440.0
+theme_override_font_sizes/normal_font_size = 50
+text = "this is some test dialogue!"
+
+[node name="Abilities" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ability1" type="ColorRect" parent="Abilities"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+color = Color(0, 0.416667, 1, 1)
+metadata/_edit_group_ = true
+
+[node name="Ability1Label" type="RichTextLabel" parent="Abilities/Ability1"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 35.0
+offset_bottom = 33.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -512.0
+offset_bottom = 512.0
+grow_horizontal = 0
+texture = ExtResource("2_8sq4i")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcc152nm6ejbx"]
+
+[ext_resource type="PackedScene" uid="uid://h0ogq786x4gd" path="res://base-objs/level.tscn" id="1_dopym"]
+[ext_resource type="Texture2D" uid="uid://rvm2buhtx0ax" path="res://assets/New Piskel(3).png" id="2_ootpb"]
+[ext_resource type="PackedScene" uid="uid://b0oxyvi1iw02p" path="res://objs/fanny.tscn" id="3_b3oru"]
+
+[node name="Level1" instance=ExtResource("1_dopym")]
+
+[node name="Map" parent="." index="0"]
+scale = Vector2(25, 25)
+texture = ExtResource("2_ootpb")
+
+[node name="StartLoc" parent="." index="1"]
+position = Vector2(1115, -171)
+
+[node name="Fanny" parent="Interactibles" index="0" instance=ExtResource("3_b3oru")]
+position = Vector2(-925, -466)

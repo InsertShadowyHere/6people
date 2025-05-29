@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0oxyvi1iw02p"]
+
+[ext_resource type="PackedScene" uid="uid://cbqxtaht48xno" path="res://base-objs/interactible.tscn" id="1_vcjut"]
+[ext_resource type="Texture2D" uid="uid://djeody2vbwnun" path="res://assets/test_npc.png" id="3_ic447"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldjtf"]
+size = Vector2(639, 652)
+
+[node name="Fanny" instance=ExtResource("1_vcjut")]
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("3_ic447")
+
+[node name="Hitbox" parent="." index="1"]
+position = Vector2(-1.5, -2)
+shape = SubResource("RectangleShape2D_ldjtf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

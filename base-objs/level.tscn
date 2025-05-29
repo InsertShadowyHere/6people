@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://h0ogq786x4gd"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Map" type="Sprite2D" parent="."]
+
+[node name="StartLoc" type="Node2D" parent="."]
+
+[node name="Interactibles" type="Node2D" parent="."]
+
+[node name="CollisionShapes" type="Node2D" parent="."]
