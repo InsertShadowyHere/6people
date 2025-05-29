@@ -11,7 +11,12 @@ metadata/_edit_group_ = true
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_i3pqv")
 
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="Area"]
 polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)

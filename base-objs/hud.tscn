@@ -1,7 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://chl2fihjpe0vu"]
 
-[ext_resource type="Script" uid="uid://bg33gxqxq2d7m" path="res://scripts/test.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://dvarrh872w54o" path="res://assets/New Piskel(2).png" id="2_8sq4i"]
+
+[sub_resource type="GDScript" id="GDScript_5q6fw"]
+script/source = "extends ColorRect
+
+func _ready():
+	visible = 0
+
+func _on_test_npc_body_entered(body: Node2D) -> void:
+	visible = 1
+
+func _on_test_npc_body_exited(body: Node2D) -> void:
+	visible = 0
+"
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -33,7 +45,7 @@ offset_right = 798.5
 offset_bottom = 466.0
 grow_horizontal = 2
 color = Color(0.415626, 0.243171, 0.266277, 1)
-script = ExtResource("1_64ctp")
+script = SubResource("GDScript_5q6fw")
 metadata/_edit_group_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Popups/DialoguePopups/Test"]

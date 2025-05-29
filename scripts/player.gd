@@ -8,12 +8,16 @@ var sprite
 
 var pos
 
+var nodes
+
 var edge_buffer
 var left_edge
 var right_edge
 var top_edge
 var bottom_edge
 var camera
+
+signal interacted
 
 const zero_vector = Vector2(0, 0)
 
@@ -52,6 +56,12 @@ func _process(delta: float) -> void:
 		scale *= 1.25
 	if Input.is_action_just_pressed("action_2"):
 		scale *= 0.8
+	
+	if Input.is_action_just_pressed("interact"):
+		nodes = $Area.get_overlapping_areas()
+		if nodes:
+			emit_signal("interacted")
+		
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

@@ -1,13 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://djg68hhehm4it"]
 
-[ext_resource type="Script" uid="uid://dx7uijx7jrc1d" path="res://scripts/main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://bcc152nm6ejbx" path="res://levels/level1.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://0ys2vrb1samu" path="res://base-objs/player.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://chl2fihjpe0vu" path="res://base-objs/hud.tscn" id="4_1bvp3"]
 
+[sub_resource type="GDScript" id="GDScript_h2yge"]
+script/source = "extends Node
+
+
+func _ready():
+	print_tree_pretty()
+"
+
 [node name="Game" type="Node2D"]
 self_modulate = Color(1, 1, 1, 0)
-script = ExtResource("1_lquwl")
+script = SubResource("GDScript_h2yge")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("3_lquwl")]

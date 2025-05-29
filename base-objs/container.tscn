@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://dyujpllhh8y7u"]
+[gd_scene load_steps=2 format=3 uid="uid://b136lj876l6xt"]
 
-[node name="Container" type="Node2D"]
+[ext_resource type="Script" uid="uid://da1h0mb256wdv" path="res://base-objs/container.gd" id="1_ajjkb"]
+
+[node name="Container" type="Area2D"]
+script = ExtResource("1_ajjkb")
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
