@@ -12,20 +12,29 @@ signal switched
 func _ready():
 	var player = get_node(\"/root/Game/Player\")
 	player.connect(\"switch\", _switch_scenes)
+	player.connect(\"shoot\", _create_projectile)
 
 func _switch_scenes(path):
 	var current_level = get_node(\"Level\")
 	if current_level:
 		current_level.queue_free()
+	for i in $Projectiles.get_children():
+		i.queue_free()
 	await get_tree().create_timer(0.01).timeout
 
-	# Load and add the new Level node
 	var new_level_scene = load(path)
 	var new_level_instance = new_level_scene.instantiate()
 	add_child(new_level_instance)
-	new_level_instance.name = \"Level\"  # Ensure the new node is named \"Level\"
+	new_level_instance.name = \"Level\"
 	print(\"Switched to new level:\", path)
 	emit_signal(\"switched\")
+
+func _create_projectile():
+	var new_proj = load(\"res://projectile-test.tscn\").instantiate()
+	new_proj.name = \"projectile\"
+	new_proj.position = $Player.position
+	$Projectiles.add_child(new_proj)
+	
 "
 
 [node name="Game" type="Node2D"]
@@ -42,3 +51,5 @@ transform = Transform2D(1, 0, 0, 1, 10000, 0)
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Level" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="Projectiles" type="Node2D" parent="."]

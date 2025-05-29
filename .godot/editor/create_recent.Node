@@ -1,13 +1,13 @@
-Area2D
+ColorRect
 Sprite2D
 CollisionShape2D
 CharacterBody2D
 Node2D
+Area2D
 CanvasLayer
 TextureRect
 Control
 RichTextLabel
-ColorRect
 Panel
 AnimatableBody2D
 TileMapLayer

@@ -19,6 +19,7 @@ var camera
 
 signal interacted
 signal switch
+signal shoot
 
 const zero_vector = Vector2(0, 0)
 
@@ -48,7 +49,8 @@ func _process(delta: float) -> void:
 			emit_signal("interacted")
 	if Input.is_action_just_pressed("switch"):
 		emit_signal("switch", "res://levels/level2.tscn")
-		
+	if Input.is_action_just_pressed("shoot"):
+		emit_signal("shoot")
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
