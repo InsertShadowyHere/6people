@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
+
 	
 	position[0] = clamp(position[0] + velocity[0]*delta, left_edge+edge_buffer, right_edge-edge_buffer)
 	position[1] = clamp(position[1] + velocity[1]*delta, top_edge+edge_buffer, bottom_edge-edge_buffer)

@@ -34,7 +34,6 @@ func _create_projectile():
 	new_proj.name = \"projectile\"
 	new_proj.position = $Player.position
 	$Projectiles.add_child(new_proj)
-	
 "
 
 [node name="Game" type="Node2D"]
