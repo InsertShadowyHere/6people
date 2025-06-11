@@ -1,54 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://djg68hhehm4it"]
+[gd_scene load_steps=4 format=3 uid="uid://6wlviinph1dp"]
 
-[ext_resource type="PackedScene" uid="uid://bcc152nm6ejbx" path="res://levels/level1.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://0ys2vrb1samu" path="res://base-objs/player.tscn" id="3_lquwl"]
-[ext_resource type="PackedScene" uid="uid://chl2fihjpe0vu" path="res://base-objs/hud.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c2c4orcrtybya" path="res://player.tscn" id="1_ig7tw"]
 
-[sub_resource type="GDScript" id="GDScript_h2yge"]
-script/source = "extends Node
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(60, 2, 60)
 
-signal switched
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+size = Vector3(60, 2, 60)
 
-func _ready():
-	var player = get_node(\"/root/Game/Player\")
-	player.connect(\"switch\", _switch_scenes)
-	player.connect(\"shoot\", _create_projectile)
+[node name="Main" type="Node"]
 
-func _switch_scenes(path):
-	var current_level = get_node(\"Level\")
-	if current_level:
-		current_level.queue_free()
-	for i in $Projectiles.get_children():
-		i.queue_free()
-	await get_tree().create_timer(0.01).timeout
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+metadata/_edit_group_ = true
 
-	var new_level_scene = load(path)
-	var new_level_instance = new_level_scene.instantiate()
-	add_child(new_level_instance)
-	new_level_instance.name = \"Level\"
-	print(\"Switched to new level:\", path)
-	emit_signal(\"switched\")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_7dm0k")
+debug_color = Color(0.953351, 1.44392e-06, 0.55401, 0.42)
 
-func _create_projectile():
-	var new_proj = load(\"res://projectile-test.tscn\").instantiate()
-	new_proj.name = \"projectile\"
-	new_proj.position = $Player.position
-	$Projectiles.add_child(new_proj)
-"
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_7dm0k")
 
-[node name="Game" type="Node2D"]
-self_modulate = Color(1, 1, 1, 0)
-script = SubResource("GDScript_h2yge")
-metadata/_edit_lock_ = true
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.62589, 0)
+shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("3_lquwl")]
-
-[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
-offset = Vector2(10000, 0)
-transform = Transform2D(1, 0, 0, 1, 10000, 0)
-
-[node name="NPCs" type="Node2D" parent="."]
-
-[node name="Level" parent="." instance=ExtResource("3_h2yge")]
-
-[node name="Projectiles" type="Node2D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09781, 0)
