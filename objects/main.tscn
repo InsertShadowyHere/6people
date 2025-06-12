@@ -1,0 +1,70 @@
+[gd_scene load_steps=14 format=3 uid="uid://6wlviinph1dp"]
+
+[ext_resource type="Script" uid="uid://ba5e88hden1pk" path="res://scripts/main.gd" id="1_f1df6"]
+[ext_resource type="PackedScene" uid="uid://c2c4orcrtybya" path="res://objects/player.tscn" id="2_5wnch"]
+[ext_resource type="Texture2D" uid="uid://buo4v71kaeqxe" path="res://assets/icon.svg" id="3_5wnch"]
+[ext_resource type="PackedScene" uid="uid://bnh2fw7tkhfbx" path="res://objects/gui.tscn" id="3_n3uw7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5wnch"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_n3uw7"]
+sky_material = SubResource("ProceduralSkyMaterial_5wnch")
+
+[sub_resource type="Environment" id="Environment_t1t6x"]
+background_mode = 2
+sky = SubResource("Sky_n3uw7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wnch"]
+albedo_color = Color(0.847059, 0.109804, 0.207843, 1)
+albedo_texture = ExtResource("3_5wnch")
+roughness = 0.0
+
+[sub_resource type="GDScript" id="GDScript_5wnch"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ig7tw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0xm2m"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_f1df6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_t1t6x")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_7dm0k")
+debug_color = Color(0.953351, 1.44392e-06, 0.55401, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_7dm0k")
+surface_material_override/0 = SubResource("StandardMaterial3D_5wnch")
+script = SubResource("GDScript_5wnch")
+
+[node name="Player" parent="." instance=ExtResource("2_5wnch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09781, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69281, 1.58429, 5.77445)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CylinderMesh_0xm2m")
+
+[node name="GUI" parent="." instance=ExtResource("3_n3uw7")]
