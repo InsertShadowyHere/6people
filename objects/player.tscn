@@ -12,9 +12,13 @@ script = ExtResource("1_4flbx")
 [node name="Camera" type="Camera3D" parent="."]
 fov = 90.0
 
-[node name="Raycast" type="RayCast3D" parent="Camera"]
+[node name="Hitcaster" type="RayCast3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 debug_shape_thickness = 5
+
+[node name="Sightcaster" type="RayCast3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collide_with_areas = true
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_eqqp1")

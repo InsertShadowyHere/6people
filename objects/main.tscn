@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://6wlviinph1dp"]
+[gd_scene load_steps=15 format=3 uid="uid://6wlviinph1dp"]
 
 [ext_resource type="Script" uid="uid://ba5e88hden1pk" path="res://scripts/main.gd" id="1_f1df6"]
 [ext_resource type="PackedScene" uid="uid://c2c4orcrtybya" path="res://objects/player.tscn" id="2_5wnch"]
 [ext_resource type="Texture2D" uid="uid://buo4v71kaeqxe" path="res://assets/icon.svg" id="3_5wnch"]
 [ext_resource type="PackedScene" uid="uid://bnh2fw7tkhfbx" path="res://objects/gui.tscn" id="3_n3uw7"]
+[ext_resource type="Script" uid="uid://c7gq1bm65ib6j" path="res://objects/rigid_body_3d.gd" id="4_n3uw7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5wnch"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -57,8 +58,9 @@ script = SubResource("GDScript_5wnch")
 [node name="Player" parent="." instance=ExtResource("2_5wnch")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09781, 0)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["interactible"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69281, 1.58429, 5.77445)
+script = ExtResource("4_n3uw7")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
@@ -68,3 +70,6 @@ shape = SubResource("CylinderShape3D_ig7tw")
 mesh = SubResource("CylinderMesh_0xm2m")
 
 [node name="GUI" parent="." instance=ExtResource("3_n3uw7")]
+
+[connection signal="looking_at_stuff" from="Player" to="GUI" method="_on_player_looking_at_stuff"]
+[connection signal="not_looking_at_stuff" from="Player" to="GUI" method="_on_player_not_looking_at_stuff"]
