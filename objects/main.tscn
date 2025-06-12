@@ -60,6 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09781, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." groups=["interactible"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69281, 1.58429, 5.77445)
+constant_force = Vector3(0, -10, 0)
 script = ExtResource("4_n3uw7")
 metadata/_edit_group_ = true
 

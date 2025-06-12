@@ -63,6 +63,8 @@ func _input(event):
 	elif Input.is_action_just_pressed("interact") and sightcaster.is_colliding():
 		if sightcaster.get_collider().has_method("interact"):
 			sightcaster.get_collider().interact()
+	elif Input.is_action_just_pressed("exit"):
+		get_tree().quit()
 	
 func _process(delta: float) -> void:
 	if interactible_displayed == false:
