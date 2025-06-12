@@ -54,6 +54,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("right"):
 		velocity += left
 	
+	# for now this is just a debug thing
 	if Input.is_action_just_pressed("switch_camera"):
 		if camera_view == 1:
 			camera_view = 2
