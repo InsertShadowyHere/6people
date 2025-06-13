@@ -11,3 +11,7 @@ func _on_player_looking_at_stuff(stuff: Variant) -> void:
 
 func _on_player_not_looking_at_stuff() -> void:
 	interact_label.visible = false
+
+
+func _on_player_update_health() -> void:
+	$HealthBar.update()

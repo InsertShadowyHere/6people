@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://sfd5mr55rv1q"]
+
+[ext_resource type="Texture2D" uid="uid://buo4v71kaeqxe" path="res://assets/icon.svg" id="1_imt35"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b4ufu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_imt35"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heylb"]
+albedo_texture = ExtResource("1_imt35")
+
+[node name="DebugObject" type="RigidBody3D" groups=["destructible"]]
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_b4ufu")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_imt35")
+surface_material_override/0 = SubResource("StandardMaterial3D_heylb")

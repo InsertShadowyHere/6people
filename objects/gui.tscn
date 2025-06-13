@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnh2fw7tkhfbx"]
+[gd_scene load_steps=6 format=3 uid="uid://bnh2fw7tkhfbx"]
 
 [ext_resource type="Script" uid="uid://dbxg5eer6wdag" path="res://objects/gui.gd" id="1_75uq4"]
-[ext_resource type="Texture2D" uid="uid://d1727sqramlca" path="res://assets/crosshair.png" id="1_80edf"]
+[ext_resource type="Texture2D" uid="uid://bp44v3d082frb" path="res://assets/New Piskel-1.png(9).png" id="2_qsldq"]
+[ext_resource type="Texture2D" uid="uid://bvdo3pi45j88c" path="res://assets/New Piskel-1.png(7).png" id="3_shmgq"]
+[ext_resource type="Texture2D" uid="uid://c62nvpwxx6bl0" path="res://assets/New Piskel-2.png(1).png" id="4_qsldq"]
+[ext_resource type="Script" uid="uid://bmamh2stiqphc" path="res://objects/health_bar.gd" id="5_qsldq"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -19,26 +22,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_80edf")
+texture = ExtResource("2_qsldq")
 
 [node name="InteractLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 offset_left = -56.0
-offset_top = -208.0
+offset_top = 500.0
 offset_right = 56.0
-offset_bottom = -176.0
+offset_bottom = 532.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 20
 text = "Interact (E)"
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 60.0
+scale = Vector2(2, 2)
+value = 100.0
+texture_under = ExtResource("3_shmgq")
+texture_progress = ExtResource("4_qsldq")
+script = ExtResource("5_qsldq")

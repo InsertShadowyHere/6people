@@ -4,7 +4,9 @@ extends CharacterBody3D
 signal looking_at_stuff(stuff)
 signal not_looking_at_stuff
 
-@export var mouse_sensitivity = 0.002 # radians/pixel
+signal update_health
+
+@export var mouse_sensitivity = 0.0015 # radians/pixel
 @export var speed = 20
 @export var jump_strength = 20
 @export var gravity = 1
@@ -26,6 +28,10 @@ var forward
 var left
 
 var test = false
+
+# DEBUG
+const DEBUG_OBJ = preload("res://generic-objects/debug_object.tscn")
+var obj
 
 @onready var camera = $Camera
 @onready var hitcaster = $Camera/Hitcaster
@@ -53,24 +59,31 @@ func _input(event):
 			camera.position[1] -= 2
 	elif Input.is_action_just_pressed("zoom"):
 		if zoomed == true:
+			mouse_sensitivity *= 3
 			zoomed = false
 			camera.fov = fov
 		else:
+			mouse_sensitivity /= 3
 			zoomed = true
 			camera.fov = 30
 	elif Input.is_action_just_pressed("fire") and hitcaster.is_colliding():
-		hitcaster.get_collider().queue_free()
+		if hitcaster.get_collider().is_in_group("destructible"):
+			hitcaster.get_collider().queue_free()
 	elif Input.is_action_just_pressed("interact") and sightcaster.is_colliding():
 		if sightcaster.get_collider().has_method("interact"):
 			sightcaster.get_collider().interact()
 	elif Input.is_action_just_pressed("exit"):
 		get_tree().quit()
+	elif Input.is_action_just_pressed("debug"):
+		obj = DEBUG_OBJ.instantiate()
+		obj.global_transform.origin = global_transform.origin - $Camera.global_basis.z.normalized() * 5
+		get_tree().current_scene.add_child(obj)
 	
 func _process(delta: float) -> void:
 	if interactible_displayed == false:
 		if sightcaster.is_colliding():
 			viewed_object = sightcaster.get_collider()
-			if viewed_object.is_in_group("interactible"):
+			if viewed_object.is_in_group("interactive"):
 				emit_signal("looking_at_stuff", viewed_object)
 				interactible_displayed = true
 	elif interactible_displayed and not sightcaster.is_colliding():
@@ -104,6 +117,7 @@ func _physics_process(delta):
 	velocity[1] -= gravity
 	move_and_slide()
 
-
-func _on_looking_at_stuff(stuff: Variant) -> void:
-	pass # Replace with function body.
+func damage(dmg):
+	PlayerData.health -= dmg
+	emit_signal("update_health")
+	

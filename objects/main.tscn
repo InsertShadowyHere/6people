@@ -58,7 +58,7 @@ script = SubResource("GDScript_5wnch")
 [node name="Player" parent="." instance=ExtResource("2_5wnch")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09781, 0)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["interactible"]]
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["destructible", "interactive"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69281, 1.58429, 5.77445)
 constant_force = Vector3(0, -10, 0)
 script = ExtResource("4_n3uw7")
@@ -74,3 +74,4 @@ mesh = SubResource("CylinderMesh_0xm2m")
 
 [connection signal="looking_at_stuff" from="Player" to="GUI" method="_on_player_looking_at_stuff"]
 [connection signal="not_looking_at_stuff" from="Player" to="GUI" method="_on_player_not_looking_at_stuff"]
+[connection signal="update_health" from="Player" to="GUI" method="_on_player_update_health"]
