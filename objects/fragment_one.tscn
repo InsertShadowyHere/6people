@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://p30xuvvdx7is"]
+
+[ext_resource type="PackedScene" uid="uid://lxt4ey2nhy58" path="res://generic-objects/fragment_sample.tscn" id="1_ivopy"]
+
+[node name="FragmentSample" instance=ExtResource("1_ivopy")]
+
+[node name="MeshInstance3D" parent="Ground" index="1"]
+surface_material_override/0 = null

@@ -5,6 +5,7 @@ signal looking_at_stuff(stuff)
 signal not_looking_at_stuff
 
 signal update_health
+signal switch_zones # TEMP, DO NOT USE
 
 @export var mouse_sensitivity = 0.0015 # radians/pixel
 @export var speed = 20
@@ -74,16 +75,22 @@ func _input(event):
 			sightcaster.get_collider().interact()
 	elif Input.is_action_just_pressed("exit"):
 		get_tree().quit()
-	elif Input.is_action_just_pressed("debug"):
-		obj = DEBUG_OBJ.instantiate()
-		obj.global_transform.origin = global_transform.origin - $Camera.global_basis.z.normalized() * 5
-		get_tree().current_scene.add_child(obj)
+	# DEBUG TO SPAWN OBJECT IN FRONT OF PLAYER
+	#elif Input.is_action_just_pressed("debug"):
+		#obj = DEBUG_OBJ.instantiate()
+		#obj.global_transform.origin = global_transform.origin - $Camera.global_basis.z.normalized() * 5
+		#get_tree().current_scene.add_child(obj)
+	# DEBUG TO SWITCH TO NEW SCENE
+	#elif Input.is_action_just_pressed("debug"):
+		#emit_signal("switch_zones", "res://objects/fragment_one.tscn")
 	
 func _process(delta: float) -> void:
 	if interactible_displayed == false:
 		if sightcaster.is_colliding():
 			viewed_object = sightcaster.get_collider()
-			if viewed_object.is_in_group("interactive"):
+			if viewed_object and viewed_object.is_in_group("interactive"): 
+				# NOTE: added check for viewed_object because it can 
+				# get deleted after variable decl and before if statement?
 				emit_signal("looking_at_stuff", viewed_object)
 				interactible_displayed = true
 	elif interactible_displayed and not sightcaster.is_colliding():
