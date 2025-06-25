@@ -1,1 +1,137 @@
-test
+-------------------OVERVIEW-------------------
+Name (for now): Shattered
+Godot 4.2, Forward+
+3d sci-fi action-adventure game
+
+Shattered is a fast-paced first-person shooter taking place on a world broken into pieces by an evil alien presence. Can the protagonist do what it takes to rescue humanity, despite the sacrifices that must be made along the way?
+Shoot aliens, board ships, establish settlements, explore a broken world, and defeat humanity's single greatest enemy since the asshole that made popup ads.
+
+-------------------GAME SPECIFICATIONS-------------------
+Art: mass effect-style old school 3d graphics
+Genre: sci-fi, action-adventure, first-person shooter
+
+-------------------STORY-------------------
+PRE-GAME LORE:
+The glorks are an alien species that discovered a strange power inside every planet. They learned to harvest it, and became powerful by doing so on a bunch of different planets. They sent a military unit to Homeworld to gather the energy and bring it back to their homeland.
+
+GAME START:
+Earth is prospering (is this earlier or later than modern-day?) when suddenly an alien ship comes and does something to shatter it
+The world cracks apart and chunks of it come flying out from the surface (“fragments”/’frags’)
+The player is stranded on some random fragment (should they be stranded with their kid or something could add plot points)
+IDEA: they’re woken up by a couple scavengers who mention something about the main city before they’re shot by the glorks, as a way to get the player to search it out and also give them a coupl starting weapons
+They must navigate through the first railroaded fragment which gives them starting weapons (no powers yet) which leads
+to the first tether
+From there, they go to another fragment and play through that one (maybe this gives them powers?) and then after about 2 hours of playtime, they reach the main city
+That starts the actual game, where they can now run through frags to get better gear, powers, and buffs
+
+-------------------GAMEPLAY-------------------
+COMBAT:
+Movement - ??
+Weapons - these will be based on things you find on glorkian bodies and will be standard issue (meaning you only get one of each throughout the game)
+You’ll be able to mod the weapons with settlement buildings as Homeworld gets more developed.
+Lightsaber
+Pistol
+Sniper
+Shotty
+Powers - these are going to be given by certain fragments throughout the game. (rechargeable?) They’ll have various movement/combat/puzzle solving based abilities
+yo-yo
+Flamethrower
+
+FRAGS:
+Every frag will be a customized level. They’ll have combat, puzzles, stealth, etc
+Each frag has a buff near the end, chosen from a large list, that improves a certain skill. It’s randomly rolled, and to get the buff back, you need to reset the fragment by reusing the tether or something (just rerunning the frag)
+Some frags will also have powers that are given to you through the middle of the level to help you get through it and give you some cool upgrades (note from raphael: i feel like a frag’s power should be necessary to get through the frag, like a fire power for melting an icy door or something)
+
+NON COMBAT:
+Forges (for weapons and armor)
+Fortifications to defend against aliens
+MAYBE: city sim stuff (farms, sewage, housing, etc)
+Resource management for the city
+Squads to gather resources and clear frags
+Trade routes between settlements
+
+QUESTS:
+Alien bacteria is infecting the colony; find a cure
+Rescue people trapped/imprisoned by a ship
+Boarding actions
+Distress signals
+Build communications arrays
+
+
+
+
+-------------------TIMELINE-------------------
+first opening cutscene - see the world destroyed by the HMS Derek
+Waking up 2 months later
+	You see a small group get shot by aliens with some hint of the main city
+Go through first frag (20 minutes)
+	Introduces you to guns (lightsaber and pistol) and tethers between the frags
+Second frag
+	One more weapon, and a power
+Eventually you get to homeworld and discover people
+
+
+-------------------TO DO-------------------
+MECHANICS TO BUILD:
+
+COMBAT:
+Smooth movement
+Sliding
+Different weapons
+View/weapon bobbing
+Powers
+Autonomous enemies
+Stealth
+PROGRESSION:
+Moving places the player can stand on
+Quests
+story
+RESOURCES:
+Global-tracked resource variables
+Spend them on different things
+FRAG SWITCHING:
+Different level switching
+In-between platforming section
+SETTLEMENTS:
+Building (spend resources, new thing gets created)
+Trade routes
+NPCs
+MISC:
+Main menu
+Esc menu
+Dialogue
+Saving
+Animation
+Art
+debug console ingame
+
+GUIDE TO GODOT:
+Groups - tags that can be given to objects (for example, the destructible tag is given to things that can be damaged or
+removed from the game entirely, while the interactive tag is given to things that can be interacted with)
+
+-------------------DEVELOPMENT STANDARDS-------------------
+TECH STACK:
+Godot 4.2
+???
+
+FORMATTING STANDARDS:
+Indents should be 4 spaces
+Node names are ThisCase
+File names are this-case
+Dirs should be created for each level
+
+VERSION CONTROL:
+Git
+Create extra branch if adding new modular mechanic, named accordingly to the mechanic you're working on
+Push at least semi-frequently and make commits clear (though it probably doesnt matter lol we're a bunch of teenagers)
+
+COMMENTING:
+Pls comment clearly enough that a random person can understand what it does
+If there are any temporary or unsafe sections, make it clear
+Same goes for things that may be unnecessarily slow, but that youre too lazy to optimize at that moment (valid)
+Make it clear what you're working on and how, and update frequently
+
+GENERAL STUFF:
+If a thing breaks repeatedly, and you put in a single-case fix for it (e.g. "when this thing is exactly at this position just ignore all errors" which is bad btw), comment it VERY clearly so it doesn't break everything
+When building mechanics, add failsafes for common possible error cases (missing assets/scripts, etc)
+Generally, try to account for things you can think of, or at least write them down at the beginning of the code you're working on so we don't forget em
